@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -442,11 +442,12 @@ export function AdminGuideSection() {
       </Card>
 
       <Tabs defaultValue="guides" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="guides">Guides</TabsTrigger>
           <TabsTrigger value="security">Sécurité</TabsTrigger>
           <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
           <TabsTrigger value="monitoring">Monitoring</TabsTrigger>
+          <TabsTrigger value="deployment">Déploiement</TabsTrigger>
         </TabsList>
 
         <TabsContent value="guides" className="space-y-6">
@@ -755,6 +756,38 @@ export function AdminGuideSection() {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        <TabsContent value="deployment" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Guide de Déploiement</CardTitle>
+              <CardDescription>Instructions pour déployer et configurer l'application</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-semibold mb-2">Prérequis système</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Node.js 18+ et npm/yarn</li>
+                    <li>• Base de données PostgreSQL 14+</li>
+                    <li>• Serveur web (Nginx/Apache)</li>
+                    <li>• SSL/TLS configuré</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <h4 className="font-semibold mb-2">Étapes de déploiement</h4>
+                  <ol className="text-sm text-gray-600 space-y-1">
+                    <li>1. Cloner le repository et installer les dépendances</li>
+                    <li>2. Configurer les variables d'environnement</li>
+                    <li>3. Initialiser la base de données</li>
+                    <li>4. Compiler l'application (build production)</li>
+                    <li>5. Configurer le serveur web et les certificats</li>
+                  </ol>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
 
