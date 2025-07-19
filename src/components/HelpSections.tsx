@@ -406,12 +406,24 @@ export function HelpSections({ section, language = "fr" }: HelpSectionsProps) {
 
               <TabsContent value="technical-doc" className="space-y-4">
                 <Tabs defaultValue="architecture" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
+                  <TabsList className="grid w-full grid-cols-6">
                     <TabsTrigger value="architecture">Architecture</TabsTrigger>
+                    <TabsTrigger value="features">Fonctionnalités</TabsTrigger>
+                    <TabsTrigger value="performance">Performance</TabsTrigger>
+                    <TabsTrigger value="security">Sécurité</TabsTrigger>
                     <TabsTrigger value="api-doc">Documentation API</TabsTrigger>
                   </TabsList>
                   <TabsContent value="architecture">
-                    <TechnicalSpecification />
+                    <TechnicalSpecification activeTab="architecture" />
+                  </TabsContent>
+                  <TabsContent value="features">
+                    <TechnicalSpecification activeTab="features" />
+                  </TabsContent>
+                  <TabsContent value="performance">
+                    <TechnicalSpecification activeTab="performance" />
+                  </TabsContent>
+                  <TabsContent value="security">
+                    <TechnicalSpecification activeTab="security" />
                   </TabsContent>
                   <TabsContent value="api-doc">
                     <APIDocumentationSection />

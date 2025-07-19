@@ -35,7 +35,11 @@ import {
   Activity
 } from 'lucide-react';
 
-export function TechnicalSpecification() {
+interface TechnicalSpecificationProps {
+  activeTab?: string;
+}
+
+export function TechnicalSpecification({ activeTab }: TechnicalSpecificationProps = {}) {
   const currentVersion = "2.3.1";
   const lastUpdate = new Date().toLocaleDateString('fr-FR');
 
@@ -259,7 +263,7 @@ export function TechnicalSpecification() {
         </div>
       </div>
 
-      <Tabs defaultValue="architecture" className="space-y-6">
+      <Tabs defaultValue={activeTab || "architecture"} className="space-y-6">
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="architecture">Architecture</TabsTrigger>
           <TabsTrigger value="features">Fonctionnalités</TabsTrigger>

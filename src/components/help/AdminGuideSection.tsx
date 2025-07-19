@@ -29,7 +29,11 @@ import {
   Target,
   TrendingUp,
   Globe,
-  Smartphone
+  Smartphone,
+  Rocket,
+  Terminal,
+  Package,
+  Cloud
 } from 'lucide-react';
 
 export function AdminGuideSection() {
@@ -759,31 +763,266 @@ export function AdminGuideSection() {
         </TabsContent>
 
         <TabsContent value="deployment" className="space-y-6">
-          <Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Rocket className="w-5 h-5 text-blue-600" />
+                  Guide de Déploiement Complet
+                </CardTitle>
+                <CardDescription>Instructions détaillées pour déployer et configurer l'application en production</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div className="p-4 bg-blue-50 rounded-lg">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Server className="w-4 h-4" />
+                      Prérequis système
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <h5 className="font-medium mb-2">Serveur de Production</h5>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          <li>• Node.js 18.0+ LTS</li>
+                          <li>• npm 8.0+ ou yarn 1.22+</li>
+                          <li>• RAM minimum: 4GB (8GB recommandé)</li>
+                          <li>• CPU: 2 vCores minimum</li>
+                          <li>• Stockage: 50GB SSD</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h5 className="font-medium mb-2">Infrastructure</h5>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          <li>• PostgreSQL 14+ avec connexions SSL</li>
+                          <li>• Serveur web: Nginx 1.20+ ou Apache 2.4+</li>
+                          <li>• Certificats SSL/TLS valides</li>
+                          <li>• CDN configuré (Cloudflare recommandé)</li>
+                          <li>• Monitoring (New Relic, Datadog)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-green-50 rounded-lg">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Terminal className="w-4 h-4" />
+                      Étapes de déploiement détaillées
+                    </h4>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h5 className="font-medium">1. Préparation de l'environnement</h5>
+                        <div className="mt-2 bg-gray-100 p-3 rounded text-sm font-mono">
+                          <div># Cloner le repository</div>
+                          <div>git clone https://github.com/dalil-dz/platform.git</div>
+                          <div>cd platform</div>
+                          <div><br/></div>
+                          <div># Installer les dépendances</div>
+                          <div>npm install --production</div>
+                        </div>
+                      </div>
+
+                      <div className="border-l-4 border-blue-500 pl-4">
+                        <h5 className="font-medium">2. Configuration des variables</h5>
+                        <div className="mt-2 bg-gray-100 p-3 rounded text-sm font-mono">
+                          <div># Copier le fichier d'environnement</div>
+                          <div>cp .env.example .env.production</div>
+                          <div><br/></div>
+                          <div># Variables critiques à configurer:</div>
+                          <div>DATABASE_URL=postgresql://...</div>
+                          <div>NEXT_PUBLIC_SUPABASE_URL=...</div>
+                          <div>SUPABASE_SERVICE_ROLE_KEY=...</div>
+                          <div>JWT_SECRET=...</div>
+                        </div>
+                      </div>
+
+                      <div className="border-l-4 border-purple-500 pl-4">
+                        <h5 className="font-medium">3. Build et déploiement</h5>
+                        <div className="mt-2 bg-gray-100 p-3 rounded text-sm font-mono">
+                          <div># Compiler pour la production</div>
+                          <div>npm run build</div>
+                          <div><br/></div>
+                          <div># Démarrer en mode production</div>
+                          <div>npm run start</div>
+                          <div><br/></div>
+                          <div># Ou avec PM2 (recommandé)</div>
+                          <div>pm2 start ecosystem.config.js</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-orange-50 rounded-lg">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Settings className="w-4 h-4" />
+                      Configuration avancée
+                    </h4>
+                    <div className="space-y-3">
+                      <div>
+                        <h5 className="font-medium text-sm">Nginx Configuration</h5>
+                         <div className="mt-1 bg-gray-100 p-3 rounded text-xs font-mono">
+                           <div>server {'{'}</div>
+                           <div>&nbsp;&nbsp;listen 443 ssl http2;</div>
+                           <div>&nbsp;&nbsp;server_name dalil.dz;</div>
+                           <div>&nbsp;&nbsp;ssl_certificate /path/to/cert.pem;</div>
+                           <div>&nbsp;&nbsp;ssl_certificate_key /path/to/key.pem;</div>
+                           <div>&nbsp;&nbsp;</div>
+                           <div>&nbsp;&nbsp;location / {'{'}</div>
+                           <div>&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://localhost:3000;</div>
+                           <div>&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header Host $host;</div>
+                           <div>&nbsp;&nbsp;{'}'}</div>
+                           <div>{'}'}</div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-green-600" />
+                  Vérifications post-déploiement
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-3">Checklist de validation</h4>
+                    <div className="space-y-2">
+                      {[
+                        { item: "Application accessible via HTTPS", status: "check" },
+                        { item: "Base de données connectée", status: "check" },
+                        { item: "Authentification fonctionnelle", status: "check" },
+                        { item: "API endpoints répondent", status: "check" },
+                        { item: "Recherche et filtres opérationnels", status: "check" },
+                        { item: "Upload de fichiers fonctionne", status: "check" },
+                        { item: "Emails de notification envoyés", status: "warning" },
+                        { item: "Monitoring et logs actifs", status: "check" }
+                      ].map((check, index) => (
+                        <div key={index} className="flex items-center gap-2 text-sm">
+                          {check.status === 'check' ? (
+                            <CheckCircle className="w-4 h-4 text-green-600" />
+                          ) : (
+                            <AlertTriangle className="w-4 h-4 text-yellow-600" />
+                          )}
+                          <span>{check.item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Globe className="w-4 h-4" />
+                      Tests de performance
+                    </h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Lighthouse Score</span>
+                        <Badge className="bg-green-100 text-green-800">98/100</Badge>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Temps de chargement</span>
+                        <Badge className="bg-green-100 text-green-800">&lt; 2s</Badge>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Disponibilité</span>
+                        <Badge className="bg-green-100 text-green-800">99.9%</Badge>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Sécurité SSL</span>
+                        <Badge className="bg-green-100 text-green-800">A+</Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Smartphone className="w-4 h-4" />
+                      Configuration mobile
+                    </h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>• PWA activée avec service worker</p>
+                      <p>• Icônes et splash screens configurés</p>
+                      <p>• Mode offline basique opérationnel</p>
+                      <p>• Notifications push configurées</p>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <h4 className="font-semibold mb-2 text-red-800">Procédures d'urgence</h4>
+                    <div className="space-y-1 text-sm text-red-700">
+                      <p>• Rollback: <code>pm2 reload --rollback</code></p>
+                      <p>• Sauvegarde: <code>npm run backup:create</code></p>
+                      <p>• Logs: <code>pm2 logs --lines 100</code></p>
+                      <p>• Contact: admin@dalil.dz | +213 XXX XXX</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mt-6">
             <CardHeader>
-              <CardTitle>Guide de Déploiement</CardTitle>
-              <CardDescription>Instructions pour déployer et configurer l'application</CardDescription>
+              <CardTitle className="flex items-center gap-2">
+                <Cloud className="w-5 h-5 text-purple-600" />
+                Déploiement sur différentes plateformes
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold mb-2">Prérequis système</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Node.js 18+ et npm/yarn</li>
-                    <li>• Base de données PostgreSQL 14+</li>
-                    <li>• Serveur web (Nginx/Apache)</li>
-                    <li>• SSL/TLS configuré</li>
-                  </ul>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Package className="w-4 h-4 text-blue-600" />
+                    Vercel (Recommandé)
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• Déploiement automatique via Git</p>
+                    <p>• CDN global intégré</p>
+                    <p>• Environnements preview/production</p>
+                    <p>• Analytics de performance</p>
+                  </div>
+                  <Button size="sm" className="mt-3 w-full">
+                    <Download className="w-3 h-3 mr-1" />
+                    Guide Vercel
+                  </Button>
                 </div>
-                <div className="p-4 bg-green-50 rounded-lg">
-                  <h4 className="font-semibold mb-2">Étapes de déploiement</h4>
-                  <ol className="text-sm text-gray-600 space-y-1">
-                    <li>1. Cloner le repository et installer les dépendances</li>
-                    <li>2. Configurer les variables d'environnement</li>
-                    <li>3. Initialiser la base de données</li>
-                    <li>4. Compiler l'application (build production)</li>
-                    <li>5. Configurer le serveur web et les certificats</li>
-                  </ol>
+
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Server className="w-4 h-4 text-green-600" />
+                    VPS/Serveur dédié
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• Contrôle total sur l'infrastructure</p>
+                    <p>• Configuration personnalisée</p>
+                    <p>• Docker & docker-compose inclus</p>
+                    <p>• Monitoring avancé</p>
+                  </div>
+                  <Button size="sm" variant="outline" className="mt-3 w-full">
+                    <Download className="w-3 h-3 mr-1" />
+                    Guide VPS
+                  </Button>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Cloud className="w-4 h-4 text-orange-600" />
+                    AWS/Azure/GCP
+                  </h4>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <p>• Scalabilité automatique</p>
+                    <p>• Services managés</p>
+                    <p>• Sécurité enterprise</p>
+                    <p>• Support 24/7</p>
+                  </div>
+                  <Button size="sm" variant="outline" className="mt-3 w-full">
+                    <Download className="w-3 h-3 mr-1" />
+                    Guide Cloud
+                  </Button>
                 </div>
               </div>
             </CardContent>
